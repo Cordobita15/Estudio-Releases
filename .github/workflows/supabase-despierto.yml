@@ -1,0 +1,16 @@
+# Mantiene despierto el proyecto de Supabase de Estudio App (el plan gratis lo pausa tras unos días sin uso).
+# Corre solo cada 3 días. Usa la clave pública (la misma que trae la app): no hace falta ningún secreto.
+name: Supabase despierto
+on:
+  schedule:
+    - cron: "17 12 */3 * *"
+  workflow_dispatch: {}
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping a Supabase
+        run: |
+          curl -fsS -X POST "https://kvqhprpnmiddmixodsei.supabase.co/rest/v1/rpc/despierto" \
+            -H "apikey: sb_publishable_3jkImafB_oVE1uMhYFSm1A_MK9oHA77" \
+            -H "Content-Type: application/json" -d '{}'
